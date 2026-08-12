@@ -45,6 +45,46 @@
     return { name: "高度防守", exposure: 20, tone: "red", summary: "結構偏空或確認不足，優先降低波動與控制損失。" };
   }
 
+  function classicRegime(total) {
+    if (total >= 75) return { name: "積極", exposure: "70%", tone: "green", summary: "均線與市場同步偏多，可順勢持有並持續汰弱留強。" };
+    if (total >= 55) return { name: "中性偏多", exposure: "50%", tone: "blue", summary: "多方條件較多，但尚未形成全面共振，採分批布局。" };
+    if (total >= 35) return { name: "防守", exposure: "30%", tone: "amber", summary: "均線、籌碼或海外訊號分歧，保留現金等待確認。" };
+    return { name: "高度防守", exposure: "20%", tone: "red", summary: "多數技術條件尚未轉強，優先控制部位與損失。" };
+  }
+
+  function scoreClassic(input) {
+    const flag = (key, points) => ({ score: input[key] === true ? points : 0, max: points, available: input[key] === true || input[key] === false });
+    const step = (key, points, test) => {
+      const value = number(input[key]);
+      return { score: value === null ? 0 : (test(value) ? points : 0), max: points, available: value !== null };
+    };
+    const group = (key, label, signals, note) => detail(key, label, signals, note);
+    const trend = group("classicTrend", "價格與均線趨勢", [
+      flag("taiexAboveMa5", 5), flag("taiexAboveMa10", 5), flag("taiexAboveMa20", 5), flag("taiexSupport", 5),
+      flag("tpexAboveMa5", 5), flag("tpexAboveMa10", 5), flag("tpexAboveMa20", 5), flag("tpexSupport", 5)
+    ], "加權與櫃買各檢查5／10／20日線及近期支撐；每項成立5分。" );
+    const sync = group("classicSync", "加權／櫃買同步", [flag("bothUp", 10), flag("breadthPositive", 10)], "兩指數同日上漲10分；電子與中小型廣度為正10分。" );
+    const futures = group("classicFutures", "期貨訊號", [
+      step("basisPct", 5, v => v >= 0), step("nightPct", 5, v => v >= 0),
+      step("foreignNet", 5, v => v >= 0), step("pcrOi", 5, v => v >= 80 && v <= 120)
+    ], "正基差、盤後上漲、外資淨部位偏多、P／C OI位於80–120，各5分。" );
+    const credit = group("classicCredit", "融資／融券", [
+      step("pricePct", 3, v => v >= 0), step("marginPct", 4, v => v <= 0), step("shortPct", 3, v => v <= 0)
+    ], "指數上漲3分；融資未增加4分；融券未增加3分。" );
+    const sox = group("classicSox", "費半代理", [
+      step("soxPct", 6, v => v >= 0), step("soxRet5", 4, v => v >= 0)
+    ], "費半前一晚上漲6分，5日動能為正4分。" );
+    const details = [trend, sync, futures, credit, sox];
+    const availableMax = details.reduce((sum, item) => sum + item.availableMax, 0);
+    const raw = details.reduce((sum, item) => sum + item.score, 0) - (input.bearGap === true ? 5 : 0);
+    const total = round(clamp(raw, 0, 100));
+    const confidence = round(availableMax);
+    const regime = confidence < 80
+      ? { name: "資料不足", exposure: "不提供", tone: "red", summary: "第一版所需欄位不足，不產生部位建議。" }
+      : classicRegime(total);
+    return { total, confidence, details, gapPenalty: input.bearGap === true ? 5 : 0, regime };
+  }
+
   function score(input) {
     const v = key => number(input[key]);
     const fmt = (key, digits = 2) => v(key) === null ? "N/A" : v(key).toFixed(digits);
@@ -120,5 +160,5 @@
     return { total, raw: total, confidence, actionable: true, details, gates, regime: { ...regime, exposure: `${cap}%`, exposureNumeric: cap, summary: gates.length ? `${regime.summary} 風險閘門：${gates.join("；")}。` : regime.summary } };
   }
 
-  return { score, regime: baseRegime };
+  return { score, scoreClassic, regime: baseRegime, classicRegime };
 });

@@ -17,7 +17,16 @@ with sync_playwright() as playwright:
     page.goto("http://127.0.0.1:8765/index.html", wait_until="networkidle")
     page.wait_for_function("document.querySelector('#total').textContent !== '0.0'")
 
-    assert "V2" in page.locator(".eyebrow").inner_text()
+    assert "DUAL-MODEL" in page.locator(".eyebrow").inner_text()
+    assert page.get_by_text("第一版｜均線技術分析", exact=True).count() == 1
+    assert page.get_by_text("第二版｜TSMOM時間序列動能分析", exact=True).count() == 1
+    assert page.get_by_text("均線技術分析細項", exact=True).count() == 1
+    assert page.get_by_text("TSMOM時間序列動能分析細項", exact=True).count() == 1
+    assert page.locator("#classicConfidence").inner_text() == "資料可信度 100%"
+    classic_y = page.get_by_text("均線技術分析細項", exact=True).bounding_box()["y"]
+    tsmom_y = page.get_by_text("TSMOM時間序列動能分析細項", exact=True).bounding_box()["y"]
+    charts_y = page.get_by_text("盤後 K 線型態", exact=True).bounding_box()["y"]
+    assert classic_y < tsmom_y < charts_y
     assert page.locator("#confidence").inner_text() == "資料可信度 100%"
     assert page.locator("#limit").inner_text() == "持股上限 30%"
     assert page.get_by_text("納指", exact=True).count() == 1

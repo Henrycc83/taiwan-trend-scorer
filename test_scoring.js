@@ -1,5 +1,5 @@
 const assert = require('node:assert/strict');
-const { score } = require('./scoring.js');
+const { score, scoreClassic } = require('./scoring.js');
 
 const empty = score({});
 assert.equal(empty.total, 0);
@@ -34,4 +34,15 @@ const nearA = score({...bullishInput, soxRet1:0.99});
 const nearB = score({...bullishInput, soxRet1:1.00});
 assert.ok(Math.abs(nearA.total-nearB.total) <= 0.1);
 
-console.log('V2 scoring tests passed');
+const classicBullishInput = {
+  taiexAboveMa5:true,taiexAboveMa10:true,taiexAboveMa20:true,taiexSupport:true,
+  tpexAboveMa5:true,tpexAboveMa10:true,tpexAboveMa20:true,tpexSupport:true,
+  bothUp:true,breadthPositive:true,basisPct:0.5,nightPct:0.3,foreignNet:1000,pcrOi:100,
+  pricePct:1,marginPct:-0.2,shortPct:-0.1,soxPct:1,soxRet5:2,bearGap:false
+};
+const classicBullish = scoreClassic(classicBullishInput);
+assert.equal(classicBullish.total, 100);
+assert.equal(classicBullish.regime.exposure, '70%');
+assert.equal(scoreClassic({...classicBullishInput, bearGap:true}).gapPenalty, 5);
+
+console.log('Dual-model scoring tests passed');

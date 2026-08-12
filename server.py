@@ -481,6 +481,21 @@ def collect_market_data():
         "atrPercentile": risk["atr_percentile"], "drawdown20": risk["drawdown20"],
         "bearGap": unclosed_bear_gap(twse) or unclosed_bear_gap(tpex),
     }
+    classic_input = {
+        "taiexAboveMa5": t_mas["5"] is not None and t["close"] >= t_mas["5"],
+        "taiexAboveMa10": t_mas["10"] is not None and t["close"] >= t_mas["10"],
+        "taiexAboveMa20": t_mas["20"] is not None and t["close"] >= t_mas["20"],
+        "tpexAboveMa5": o_mas["5"] is not None and o["close"] >= o_mas["5"],
+        "tpexAboveMa10": o_mas["10"] is not None and o["close"] >= o_mas["10"],
+        "tpexAboveMa20": o_mas["20"] is not None and o["close"] >= o_mas["20"],
+        "taiexSupport": taiex_support, "tpexSupport": tpex_support,
+        "bothUp": input_data["bothUp"], "breadthPositive": input_data["breadthPositive"],
+        "basisPct": futures["basis_pct"], "nightPct": input_data["nightPct"],
+        "foreignNet": futures["foreign_net"], "pcrOi": futures["pcr_oi"],
+        "pricePct": price_pct, "marginPct": credit.get("margin_pct"), "shortPct": credit.get("short_pct"),
+        "soxPct": sox.get("change_pct"), "soxRet5": input_data["soxRet5"],
+        "bearGap": input_data["bearGap"],
+    }
     feature_values = [v for v in input_data.values() if not isinstance(v, bool)]
     completeness = round(sum(v is not None for v in feature_values) / len(feature_values) * 100, 1) if feature_values else 0
     critical_keys = ["taiexCloseMa20Pct", "taiexMa20Slope5", "taiexRet20", "tpexCloseMa20Pct", "tpexMa20Slope5", "tpexRet20"]
@@ -489,7 +504,7 @@ def collect_market_data():
     credit.update({"margin_ret5": margin_ret5, "margin_ret20": margin_ret20, "short_ret5": short_ret5})
     sox.update({"ret5": input_data["soxRet5"], "ret20": input_data["soxRet20"]})
     nasdaq.update({"ret5": input_data["nasdaqRet5"], "ret20": input_data["nasdaqRet20"]})
-    output = {"ok": True, "model_version": "2.0", "decision_clock": "台灣時間 08:30 開盤前", "generated_at": datetime.now().astimezone().isoformat(timespec="seconds"), "trading_day": trading_day, "input": input_data,
+    output = {"ok": True, "model_version": "1.0 + 2.0", "decision_clock": "台灣時間 08:30 開盤前", "generated_at": datetime.now().astimezone().isoformat(timespec="seconds"), "trading_day": trading_day, "input": input_data, "classic_input": classic_input,
       "data_quality": {"completeness": completeness, "critical_missing": critical_missing},
       "market": {"taiex": {"close": t["close"], "previous": twse[-2]["close"], "mas": t_mas, "ret5": taiex_ret5, "ret20": taiex_ret20}, "tpex": {"close": o["close"], "previous": tpex[-2]["close"], "mas": o_mas, "ret5": tpex_ret5, "ret20": tpex_ret20}, "futures": futures, "credit": credit, "sox": sox, "nasdaq": nasdaq, "risk": risk},
       "charts": {"sox": sox.get("history", [])[-60:], "taiex": twse[-60:], "tpex": chart_tpex, "futuresNight": results.get("futures_bundle", {}).get("night", [])[-60:]},
