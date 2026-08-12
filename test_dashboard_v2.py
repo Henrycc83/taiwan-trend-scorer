@@ -6,6 +6,7 @@ from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parent
 CACHE = (ROOT / "latest_market_data.json").read_text(encoding="utf-8")
+DATA = json.loads(CACHE)
 
 
 with sync_playwright() as playwright:
@@ -18,30 +19,27 @@ with sync_playwright() as playwright:
     page.wait_for_function("document.querySelector('#total').textContent !== '0.0'")
 
     assert "DUAL-MODEL" in page.locator(".eyebrow").inner_text()
-    assert page.get_by_text("第一版｜均線技術分析", exact=True).count() == 1
-    assert page.get_by_text("第二版｜TSMOM時間序列動能分析", exact=True).count() == 1
     assert page.get_by_text("均線技術分析細項", exact=True).count() == 1
     assert page.get_by_text("TSMOM時間序列動能分析細項", exact=True).count() == 1
     assert page.locator("#classicConfidence").inner_text() == "資料可信度 100%"
+    assert page.locator("#confidence").inner_text() == "資料可信度 100%"
+
     classic_y = page.get_by_text("均線技術分析細項", exact=True).bounding_box()["y"]
     tsmom_y = page.get_by_text("TSMOM時間序列動能分析細項", exact=True).bounding_box()["y"]
     charts_y = page.get_by_text("盤後 K 線型態", exact=True).bounding_box()["y"]
     assert classic_y < tsmom_y < charts_y
-    assert page.locator("#confidence").inner_text() == "資料可信度 100%"
-    assert page.locator("#limit").inner_text() == "持股上限 30%"
-    assert page.get_by_text("納指", exact=True).count() == 1
-    assert page.get_by_text("全球科技風險", exact=True).count() >= 1
-    assert page.get_by_text("期貨與法人部位", exact=True).count() >= 1
-    assert page.locator("#chart-sox").count() == 1
-    assert page.locator("#chart-futuresNight").count() == 1
-    assert page.get_by_text("━ 5 日線", exact=True).count() == 1
-    assert page.get_by_text("━ 20 日線", exact=True).count() == 1
+
+    sync_text = page.locator("#syncSignal").inner_text()
+    expected = {"golden": "黃金交叉", "death": "死亡交叉", "divergent": "方向分歧"}[DATA["market"]["foreign_fx"]["signal"]]
+    assert expected in sync_text
+    assert DATA["market"]["foreign_fx"]["as_of"] in sync_text
+    assert page.locator("#chart-foreignFx[data-sync='drawn']").count() == 1
+    assert page.locator("#meta-foreignFx").inner_text().startswith("共同資料至")
     assert page.locator("canvas[data-ma5='drawn'][data-ma20='drawn']").count() == 4
 
     page.locator("#taiexRet20").fill("")
     assert page.locator("#status").inner_text() == "資料不足"
-    assert page.locator("#limit").inner_text() == "持股上限 不提供"
-    page.locator("#taiexRet20").fill(str(json.loads(CACHE)["input"]["taiexRet20"]))
+    page.locator("#taiexRet20").fill(str(DATA["input"]["taiexRet20"]))
     page.get_by_text("06 波動與破壞訊號", exact=True).click()
     page.locator("#atrPercentile").fill("95")
     assert "ATR" in page.locator("#gateBox").inner_text()

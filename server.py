@@ -29,6 +29,7 @@ SOURCES = {
     "sox": "https://historyofmarket.com/semi/semi-price/",
     "sox_check": "https://indexes.nasdaq.com/Index/Overview/SOX",
     "nasdaq": "https://www.nasdaq.com/market-activity/index/comp",
+    "fred_fx": "https://fred.stlouisfed.org/series/DEXTAUS",
 }
 
 
@@ -238,6 +239,34 @@ def credit_history(today: date):
     return [row for row in sorted(by_date.values(), key=lambda x: x["date"]) if row.get("margin") is not None and row.get("short") is not None]
 
 
+def synchronization_signal(foreign_short, foreign_long, fx_short, fx_long):
+    """Classify direction synchronisation; USD/TWD down means TWD up."""
+    foreign_direction = "up" if foreign_short > foreign_long else "down" if foreign_short < foreign_long else "flat"
+    twd_direction = "up" if fx_short < fx_long else "down" if fx_short > fx_long else "flat"
+    signal = "golden" if foreign_direction == twd_direction == "up" else "death" if foreign_direction == twd_direction == "down" else "divergent"
+    return signal, foreign_direction, twd_direction
+
+
+def foreign_fx_bundle(today: date):
+    start = today - timedelta(days=150)
+    foreign_url = "https://api.finmindtrade.com/api/v4/data?" + urllib.parse.urlencode({"dataset": "TaiwanStockTotalInstitutionalInvestors", "start_date": start.isoformat(), "end_date": today.isoformat()})
+    payload = fetch_json(foreign_url)
+    if payload.get("status") != 200: raise ValueError(payload.get("msg") or "FinMind外資買賣超資料失敗")
+    foreign = {row["date"]: (clean_number(row.get("buy")) - clean_number(row.get("sell"))) / 1_000_000_000 for row in payload.get("data", []) if row.get("name") == "Foreign_Investor" and clean_number(row.get("buy")) is not None and clean_number(row.get("sell")) is not None}
+    fred_url = "https://fred.stlouisfed.org/graph/fredgraph.csv?" + urllib.parse.urlencode({"id": "DEXTAUS", "cosd": start.isoformat(), "coed": today.isoformat()})
+    fx = {}
+    for line in fetch(fred_url).decode("utf-8-sig").splitlines()[1:]:
+        parts = line.split(",")
+        if len(parts) == 2 and clean_number(parts[1]) is not None: fx[parts[0]] = clean_number(parts[1])
+    common = sorted(set(foreign) & set(fx))
+    rows = [{"date": d, "foreign_net_bn": round(foreign[d], 3), "usd_twd": fx[d]} for d in common]
+    if len(rows) < 20: raise ValueError("外資與匯率共同資料不足20日")
+    foreign5 = sum(r["foreign_net_bn"] for r in rows[-5:]) / 5; foreign20 = sum(r["foreign_net_bn"] for r in rows[-20:]) / 20
+    fx5 = sum(r["usd_twd"] for r in rows[-5:]) / 5; fx20 = sum(r["usd_twd"] for r in rows[-20:]) / 20
+    signal, foreign_direction, twd_direction = synchronization_signal(foreign5, foreign20, fx5, fx20)
+    return {"signal": signal, "foreign_direction": foreign_direction, "twd_direction": twd_direction, "as_of": rows[-1]["date"], "foreign_ma5_bn": round(foreign5, 2), "foreign_ma20_bn": round(foreign20, 2), "usd_twd_ma5": round(fx5, 4), "usd_twd_ma20": round(fx20, 4), "history": rows[-60:]}
+
+
 def html_rows(url):
     parser = TableParser(); parser.feed(fetch(url).decode("utf-8", errors="ignore")); return parser.rows
 
@@ -396,7 +425,7 @@ def unclosed_bear_gap(rows):
 def collect_market_data():
     errors = []
     today = date.today()
-    with ThreadPoolExecutor(max_workers=6) as pool:
+    with ThreadPoolExecutor(max_workers=7) as pool:
         jobs = {
             pool.submit(twse_history, today): "twse_history",
             pool.submit(tpex_history, today): "tpex_history",
@@ -404,6 +433,7 @@ def collect_market_data():
             pool.submit(nasdaq_composite_data, today): "nasdaq",
             pool.submit(futures_bundle, today): "futures_bundle",
             pool.submit(credit_history, today): "credit_history",
+            pool.submit(foreign_fx_bundle, today): "foreign_fx",
         }
         results = {}
         for future in as_completed(jobs):
@@ -504,10 +534,12 @@ def collect_market_data():
     credit.update({"margin_ret5": margin_ret5, "margin_ret20": margin_ret20, "short_ret5": short_ret5})
     sox.update({"ret5": input_data["soxRet5"], "ret20": input_data["soxRet20"]})
     nasdaq.update({"ret5": input_data["nasdaqRet5"], "ret20": input_data["nasdaqRet20"]})
+    foreign_fx = results.get("foreign_fx", {"signal": "unavailable", "history": []})
+    if "foreign_fx" not in results: errors.append("foreign_fx: 外資與新台幣匯率同步資料取得失敗")
     output = {"ok": True, "model_version": "1.0 + 2.0", "decision_clock": "台灣時間 08:30 開盤前", "generated_at": datetime.now().astimezone().isoformat(timespec="seconds"), "trading_day": trading_day, "input": input_data, "classic_input": classic_input,
       "data_quality": {"completeness": completeness, "critical_missing": critical_missing},
-      "market": {"taiex": {"close": t["close"], "previous": twse[-2]["close"], "mas": t_mas, "ret5": taiex_ret5, "ret20": taiex_ret20}, "tpex": {"close": o["close"], "previous": tpex[-2]["close"], "mas": o_mas, "ret5": tpex_ret5, "ret20": tpex_ret20}, "futures": futures, "credit": credit, "sox": sox, "nasdaq": nasdaq, "risk": risk},
-      "charts": {"sox": sox.get("history", [])[-60:], "taiex": twse[-60:], "tpex": chart_tpex, "futuresNight": results.get("futures_bundle", {}).get("night", [])[-60:]},
+      "market": {"taiex": {"close": t["close"], "previous": twse[-2]["close"], "mas": t_mas, "ret5": taiex_ret5, "ret20": taiex_ret20}, "tpex": {"close": o["close"], "previous": tpex[-2]["close"], "mas": o_mas, "ret5": tpex_ret5, "ret20": tpex_ret20}, "futures": futures, "credit": credit, "sox": sox, "nasdaq": nasdaq, "risk": risk, "foreign_fx": foreign_fx},
+      "charts": {"sox": sox.get("history", [])[-60:], "taiex": twse[-60:], "tpex": chart_tpex, "futuresNight": results.get("futures_bundle", {}).get("night", [])[-60:], "foreignFx": foreign_fx.get("history", [])},
       "sources": SOURCES, "errors": errors}
     CACHE.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
     snapshot_dir = ROOT / "snapshots"; snapshot_dir.mkdir(exist_ok=True)

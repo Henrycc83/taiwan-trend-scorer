@@ -1,8 +1,8 @@
 {
   "ok": true,
-  "model_version": "2.0",
+  "model_version": "1.0 + 2.0",
   "decision_clock": "台灣時間 08:30 開盤前",
-  "generated_at": "2026-08-12T03:56:34+00:00",
+  "generated_at": "2026-08-12T13:11:06+08:00",
   "trading_day": "2026-08-11",
   "input": {
     "taiexCloseMa20Pct": 3.452,
@@ -33,6 +33,28 @@
     "soxRelative20": -5.7464,
     "atrPercentile": 86.84,
     "drawdown20": -1.1196,
+    "bearGap": true
+  },
+  "classic_input": {
+    "taiexAboveMa5": true,
+    "taiexAboveMa10": true,
+    "taiexAboveMa20": true,
+    "tpexAboveMa5": true,
+    "tpexAboveMa10": true,
+    "tpexAboveMa20": false,
+    "taiexSupport": true,
+    "tpexSupport": true,
+    "bothUp": true,
+    "breadthPositive": true,
+    "basisPct": -0.0681,
+    "nightPct": 0.4192,
+    "foreignNet": -88924,
+    "pcrOi": 123.58,
+    "pricePct": 0.4273,
+    "marginPct": -0.2097,
+    "shortPct": 1.0793,
+    "soxPct": 0.8722,
+    "soxRet5": -0.6633,
     "bearGap": true
   },
   "data_quality": {
@@ -91,7 +113,7 @@
       "close": 12098.47,
       "previous": 11993.86,
       "change_pct": 0.8722,
-      "crosscheck": "2026-08-10｜History of Market 11,993.86／Nasdaq 11,993.86，差異 0.00%",
+      "crosscheck": "2026-08-11｜History of Market 12,098.47／Nasdaq 12,098.47，差異 0.00%",
       "history": [
         {
           "date": "2026-05-15",
@@ -952,6 +974,318 @@
     "risk": {
       "atr_percentile": 86.84,
       "drawdown20": -1.1196
+    },
+    "foreign_fx": {
+      "signal": "golden",
+      "foreign_direction": "up",
+      "twd_direction": "up",
+      "as_of": "2026-08-07",
+      "foreign_ma5_bn": 5.34,
+      "foreign_ma20_bn": -20.62,
+      "usd_twd_ma5": 32.292,
+      "usd_twd_ma20": 32.297,
+      "history": [
+        {
+          "date": "2026-05-12",
+          "foreign_net_bn": -30.494,
+          "usd_twd": 31.55
+        },
+        {
+          "date": "2026-05-13",
+          "foreign_net_bn": -43.429,
+          "usd_twd": 31.51
+        },
+        {
+          "date": "2026-05-14",
+          "foreign_net_bn": 4.543,
+          "usd_twd": 31.5
+        },
+        {
+          "date": "2026-05-15",
+          "foreign_net_bn": -10.427,
+          "usd_twd": 31.53
+        },
+        {
+          "date": "2026-05-18",
+          "foreign_net_bn": -45.241,
+          "usd_twd": 31.55
+        },
+        {
+          "date": "2026-05-19",
+          "foreign_net_bn": -63.235,
+          "usd_twd": 31.67
+        },
+        {
+          "date": "2026-05-20",
+          "foreign_net_bn": -46.621,
+          "usd_twd": 31.66
+        },
+        {
+          "date": "2026-05-21",
+          "foreign_net_bn": 60.341,
+          "usd_twd": 31.6
+        },
+        {
+          "date": "2026-05-22",
+          "foreign_net_bn": 76.137,
+          "usd_twd": 31.45
+        },
+        {
+          "date": "2026-05-26",
+          "foreign_net_bn": 35.436,
+          "usd_twd": 31.43
+        },
+        {
+          "date": "2026-05-27",
+          "foreign_net_bn": 38.128,
+          "usd_twd": 31.39
+        },
+        {
+          "date": "2026-05-28",
+          "foreign_net_bn": -38.137,
+          "usd_twd": 31.36
+        },
+        {
+          "date": "2026-05-29",
+          "foreign_net_bn": 80.145,
+          "usd_twd": 31.37
+        },
+        {
+          "date": "2026-06-01",
+          "foreign_net_bn": 36.817,
+          "usd_twd": 31.37
+        },
+        {
+          "date": "2026-06-02",
+          "foreign_net_bn": 10.843,
+          "usd_twd": 31.45
+        },
+        {
+          "date": "2026-06-03",
+          "foreign_net_bn": 43.396,
+          "usd_twd": 31.42
+        },
+        {
+          "date": "2026-06-04",
+          "foreign_net_bn": -75.685,
+          "usd_twd": 31.46
+        },
+        {
+          "date": "2026-06-05",
+          "foreign_net_bn": -82.631,
+          "usd_twd": 31.5
+        },
+        {
+          "date": "2026-06-08",
+          "foreign_net_bn": -93.852,
+          "usd_twd": 31.58
+        },
+        {
+          "date": "2026-06-09",
+          "foreign_net_bn": -91.733,
+          "usd_twd": 31.62
+        },
+        {
+          "date": "2026-06-10",
+          "foreign_net_bn": -93.574,
+          "usd_twd": 31.68
+        },
+        {
+          "date": "2026-06-11",
+          "foreign_net_bn": -35.779,
+          "usd_twd": 31.62
+        },
+        {
+          "date": "2026-06-12",
+          "foreign_net_bn": 28.69,
+          "usd_twd": 31.63
+        },
+        {
+          "date": "2026-06-15",
+          "foreign_net_bn": 46.532,
+          "usd_twd": 31.55
+        },
+        {
+          "date": "2026-06-16",
+          "foreign_net_bn": 40.798,
+          "usd_twd": 31.57
+        },
+        {
+          "date": "2026-06-17",
+          "foreign_net_bn": -20.684,
+          "usd_twd": 31.57
+        },
+        {
+          "date": "2026-06-18",
+          "foreign_net_bn": 21.147,
+          "usd_twd": 31.58
+        },
+        {
+          "date": "2026-06-22",
+          "foreign_net_bn": 68.458,
+          "usd_twd": 31.63
+        },
+        {
+          "date": "2026-06-23",
+          "foreign_net_bn": -38.592,
+          "usd_twd": 31.63
+        },
+        {
+          "date": "2026-06-24",
+          "foreign_net_bn": -177.403,
+          "usd_twd": 31.76
+        },
+        {
+          "date": "2026-06-25",
+          "foreign_net_bn": -40.51,
+          "usd_twd": 31.84
+        },
+        {
+          "date": "2026-06-26",
+          "foreign_net_bn": -143.189,
+          "usd_twd": 31.85
+        },
+        {
+          "date": "2026-06-29",
+          "foreign_net_bn": -4.336,
+          "usd_twd": 31.85
+        },
+        {
+          "date": "2026-06-30",
+          "foreign_net_bn": -0.509,
+          "usd_twd": 31.85
+        },
+        {
+          "date": "2026-07-01",
+          "foreign_net_bn": 32.376,
+          "usd_twd": 31.88
+        },
+        {
+          "date": "2026-07-02",
+          "foreign_net_bn": -89.047,
+          "usd_twd": 31.86
+        },
+        {
+          "date": "2026-07-06",
+          "foreign_net_bn": -25.504,
+          "usd_twd": 32.04
+        },
+        {
+          "date": "2026-07-07",
+          "foreign_net_bn": -54.731,
+          "usd_twd": 32.17
+        },
+        {
+          "date": "2026-07-08",
+          "foreign_net_bn": -37.949,
+          "usd_twd": 32.09
+        },
+        {
+          "date": "2026-07-09",
+          "foreign_net_bn": -47.253,
+          "usd_twd": 32.16
+        },
+        {
+          "date": "2026-07-13",
+          "foreign_net_bn": -19.56,
+          "usd_twd": 32.16
+        },
+        {
+          "date": "2026-07-14",
+          "foreign_net_bn": -51.893,
+          "usd_twd": 32.15
+        },
+        {
+          "date": "2026-07-15",
+          "foreign_net_bn": -1.415,
+          "usd_twd": 32.2
+        },
+        {
+          "date": "2026-07-16",
+          "foreign_net_bn": -48.335,
+          "usd_twd": 32.25
+        },
+        {
+          "date": "2026-07-17",
+          "foreign_net_bn": -188.315,
+          "usd_twd": 32.37
+        },
+        {
+          "date": "2026-07-20",
+          "foreign_net_bn": -6.084,
+          "usd_twd": 32.26
+        },
+        {
+          "date": "2026-07-21",
+          "foreign_net_bn": -4.332,
+          "usd_twd": 32.36
+        },
+        {
+          "date": "2026-07-22",
+          "foreign_net_bn": 17.344,
+          "usd_twd": 32.42
+        },
+        {
+          "date": "2026-07-23",
+          "foreign_net_bn": 6.958,
+          "usd_twd": 32.28
+        },
+        {
+          "date": "2026-07-24",
+          "foreign_net_bn": -60.95,
+          "usd_twd": 32.39
+        },
+        {
+          "date": "2026-07-27",
+          "foreign_net_bn": 8.04,
+          "usd_twd": 32.28
+        },
+        {
+          "date": "2026-07-28",
+          "foreign_net_bn": -87.485,
+          "usd_twd": 32.34
+        },
+        {
+          "date": "2026-07-29",
+          "foreign_net_bn": -22.252,
+          "usd_twd": 32.37
+        },
+        {
+          "date": "2026-07-30",
+          "foreign_net_bn": -48.312,
+          "usd_twd": 32.38
+        },
+        {
+          "date": "2026-07-31",
+          "foreign_net_bn": 67.554,
+          "usd_twd": 32.27
+        },
+        {
+          "date": "2026-08-03",
+          "foreign_net_bn": -19.191,
+          "usd_twd": 32.28
+        },
+        {
+          "date": "2026-08-04",
+          "foreign_net_bn": -5.732,
+          "usd_twd": 32.4
+        },
+        {
+          "date": "2026-08-05",
+          "foreign_net_bn": 90.308,
+          "usd_twd": 32.29
+        },
+        {
+          "date": "2026-08-06",
+          "foreign_net_bn": 2.02,
+          "usd_twd": 32.24
+        },
+        {
+          "date": "2026-08-07",
+          "foreign_net_bn": -40.716,
+          "usd_twd": 32.25
+        }
+      ]
     }
   },
   "charts": {
@@ -2643,6 +2977,308 @@
         "low": 44830.0,
         "close": 45279.0
       }
+    ],
+    "foreignFx": [
+      {
+        "date": "2026-05-12",
+        "foreign_net_bn": -30.494,
+        "usd_twd": 31.55
+      },
+      {
+        "date": "2026-05-13",
+        "foreign_net_bn": -43.429,
+        "usd_twd": 31.51
+      },
+      {
+        "date": "2026-05-14",
+        "foreign_net_bn": 4.543,
+        "usd_twd": 31.5
+      },
+      {
+        "date": "2026-05-15",
+        "foreign_net_bn": -10.427,
+        "usd_twd": 31.53
+      },
+      {
+        "date": "2026-05-18",
+        "foreign_net_bn": -45.241,
+        "usd_twd": 31.55
+      },
+      {
+        "date": "2026-05-19",
+        "foreign_net_bn": -63.235,
+        "usd_twd": 31.67
+      },
+      {
+        "date": "2026-05-20",
+        "foreign_net_bn": -46.621,
+        "usd_twd": 31.66
+      },
+      {
+        "date": "2026-05-21",
+        "foreign_net_bn": 60.341,
+        "usd_twd": 31.6
+      },
+      {
+        "date": "2026-05-22",
+        "foreign_net_bn": 76.137,
+        "usd_twd": 31.45
+      },
+      {
+        "date": "2026-05-26",
+        "foreign_net_bn": 35.436,
+        "usd_twd": 31.43
+      },
+      {
+        "date": "2026-05-27",
+        "foreign_net_bn": 38.128,
+        "usd_twd": 31.39
+      },
+      {
+        "date": "2026-05-28",
+        "foreign_net_bn": -38.137,
+        "usd_twd": 31.36
+      },
+      {
+        "date": "2026-05-29",
+        "foreign_net_bn": 80.145,
+        "usd_twd": 31.37
+      },
+      {
+        "date": "2026-06-01",
+        "foreign_net_bn": 36.817,
+        "usd_twd": 31.37
+      },
+      {
+        "date": "2026-06-02",
+        "foreign_net_bn": 10.843,
+        "usd_twd": 31.45
+      },
+      {
+        "date": "2026-06-03",
+        "foreign_net_bn": 43.396,
+        "usd_twd": 31.42
+      },
+      {
+        "date": "2026-06-04",
+        "foreign_net_bn": -75.685,
+        "usd_twd": 31.46
+      },
+      {
+        "date": "2026-06-05",
+        "foreign_net_bn": -82.631,
+        "usd_twd": 31.5
+      },
+      {
+        "date": "2026-06-08",
+        "foreign_net_bn": -93.852,
+        "usd_twd": 31.58
+      },
+      {
+        "date": "2026-06-09",
+        "foreign_net_bn": -91.733,
+        "usd_twd": 31.62
+      },
+      {
+        "date": "2026-06-10",
+        "foreign_net_bn": -93.574,
+        "usd_twd": 31.68
+      },
+      {
+        "date": "2026-06-11",
+        "foreign_net_bn": -35.779,
+        "usd_twd": 31.62
+      },
+      {
+        "date": "2026-06-12",
+        "foreign_net_bn": 28.69,
+        "usd_twd": 31.63
+      },
+      {
+        "date": "2026-06-15",
+        "foreign_net_bn": 46.532,
+        "usd_twd": 31.55
+      },
+      {
+        "date": "2026-06-16",
+        "foreign_net_bn": 40.798,
+        "usd_twd": 31.57
+      },
+      {
+        "date": "2026-06-17",
+        "foreign_net_bn": -20.684,
+        "usd_twd": 31.57
+      },
+      {
+        "date": "2026-06-18",
+        "foreign_net_bn": 21.147,
+        "usd_twd": 31.58
+      },
+      {
+        "date": "2026-06-22",
+        "foreign_net_bn": 68.458,
+        "usd_twd": 31.63
+      },
+      {
+        "date": "2026-06-23",
+        "foreign_net_bn": -38.592,
+        "usd_twd": 31.63
+      },
+      {
+        "date": "2026-06-24",
+        "foreign_net_bn": -177.403,
+        "usd_twd": 31.76
+      },
+      {
+        "date": "2026-06-25",
+        "foreign_net_bn": -40.51,
+        "usd_twd": 31.84
+      },
+      {
+        "date": "2026-06-26",
+        "foreign_net_bn": -143.189,
+        "usd_twd": 31.85
+      },
+      {
+        "date": "2026-06-29",
+        "foreign_net_bn": -4.336,
+        "usd_twd": 31.85
+      },
+      {
+        "date": "2026-06-30",
+        "foreign_net_bn": -0.509,
+        "usd_twd": 31.85
+      },
+      {
+        "date": "2026-07-01",
+        "foreign_net_bn": 32.376,
+        "usd_twd": 31.88
+      },
+      {
+        "date": "2026-07-02",
+        "foreign_net_bn": -89.047,
+        "usd_twd": 31.86
+      },
+      {
+        "date": "2026-07-06",
+        "foreign_net_bn": -25.504,
+        "usd_twd": 32.04
+      },
+      {
+        "date": "2026-07-07",
+        "foreign_net_bn": -54.731,
+        "usd_twd": 32.17
+      },
+      {
+        "date": "2026-07-08",
+        "foreign_net_bn": -37.949,
+        "usd_twd": 32.09
+      },
+      {
+        "date": "2026-07-09",
+        "foreign_net_bn": -47.253,
+        "usd_twd": 32.16
+      },
+      {
+        "date": "2026-07-13",
+        "foreign_net_bn": -19.56,
+        "usd_twd": 32.16
+      },
+      {
+        "date": "2026-07-14",
+        "foreign_net_bn": -51.893,
+        "usd_twd": 32.15
+      },
+      {
+        "date": "2026-07-15",
+        "foreign_net_bn": -1.415,
+        "usd_twd": 32.2
+      },
+      {
+        "date": "2026-07-16",
+        "foreign_net_bn": -48.335,
+        "usd_twd": 32.25
+      },
+      {
+        "date": "2026-07-17",
+        "foreign_net_bn": -188.315,
+        "usd_twd": 32.37
+      },
+      {
+        "date": "2026-07-20",
+        "foreign_net_bn": -6.084,
+        "usd_twd": 32.26
+      },
+      {
+        "date": "2026-07-21",
+        "foreign_net_bn": -4.332,
+        "usd_twd": 32.36
+      },
+      {
+        "date": "2026-07-22",
+        "foreign_net_bn": 17.344,
+        "usd_twd": 32.42
+      },
+      {
+        "date": "2026-07-23",
+        "foreign_net_bn": 6.958,
+        "usd_twd": 32.28
+      },
+      {
+        "date": "2026-07-24",
+        "foreign_net_bn": -60.95,
+        "usd_twd": 32.39
+      },
+      {
+        "date": "2026-07-27",
+        "foreign_net_bn": 8.04,
+        "usd_twd": 32.28
+      },
+      {
+        "date": "2026-07-28",
+        "foreign_net_bn": -87.485,
+        "usd_twd": 32.34
+      },
+      {
+        "date": "2026-07-29",
+        "foreign_net_bn": -22.252,
+        "usd_twd": 32.37
+      },
+      {
+        "date": "2026-07-30",
+        "foreign_net_bn": -48.312,
+        "usd_twd": 32.38
+      },
+      {
+        "date": "2026-07-31",
+        "foreign_net_bn": 67.554,
+        "usd_twd": 32.27
+      },
+      {
+        "date": "2026-08-03",
+        "foreign_net_bn": -19.191,
+        "usd_twd": 32.28
+      },
+      {
+        "date": "2026-08-04",
+        "foreign_net_bn": -5.732,
+        "usd_twd": 32.4
+      },
+      {
+        "date": "2026-08-05",
+        "foreign_net_bn": 90.308,
+        "usd_twd": 32.29
+      },
+      {
+        "date": "2026-08-06",
+        "foreign_net_bn": 2.02,
+        "usd_twd": 32.24
+      },
+      {
+        "date": "2026-08-07",
+        "foreign_net_bn": -40.716,
+        "usd_twd": 32.25
+      }
     ]
   },
   "sources": {
@@ -2653,7 +3289,8 @@
     "yahoo": "https://finance.yahoo.com/quote/%5ETWOII/history/",
     "sox": "https://historyofmarket.com/semi/semi-price/",
     "sox_check": "https://indexes.nasdaq.com/Index/Overview/SOX",
-    "nasdaq": "https://www.nasdaq.com/market-activity/index/comp"
+    "nasdaq": "https://www.nasdaq.com/market-activity/index/comp",
+    "fred_fx": "https://fred.stlouisfed.org/series/DEXTAUS"
   },
   "errors": []
 }
