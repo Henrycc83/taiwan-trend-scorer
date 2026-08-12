@@ -25,6 +25,9 @@ with sync_playwright() as playwright:
     assert page.get_by_text("期貨與法人部位", exact=True).count() >= 1
     assert page.locator("#chart-sox").count() == 1
     assert page.locator("#chart-futuresNight").count() == 1
+    assert page.get_by_text("━ 5 日線", exact=True).count() == 1
+    assert page.get_by_text("━ 20 日線", exact=True).count() == 1
+    assert page.locator("canvas[data-ma5='drawn'][data-ma20='drawn']").count() == 4
 
     page.locator("#taiexRet20").fill("")
     assert page.locator("#status").inner_text() == "資料不足"
