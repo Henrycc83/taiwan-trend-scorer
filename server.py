@@ -247,6 +247,23 @@ def synchronization_signal(foreign_short, foreign_long, fx_short, fx_long):
     return signal, foreign_direction, twd_direction
 
 
+def previous_score_reference(previous_trading_day: str, snapshot_dir=None):
+    """Return stored model inputs for the exact prior exchange trading day."""
+    folder = Path(snapshot_dir) if snapshot_dir else ROOT / "snapshots"
+    candidates = []
+    for path in folder.glob("preopen-*.json") if folder.exists() else []:
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            prior_day = payload.get("trading_day", "")
+            if prior_day == previous_trading_day and payload.get("input") and payload.get("classic_input"):
+                candidates.append((prior_day, payload.get("generated_at", ""), payload))
+        except (OSError, ValueError, TypeError):
+            continue
+    if not candidates: return None
+    payload = max(candidates, key=lambda item: (item[0], item[1]))[2]
+    return {"trading_day": payload["trading_day"], "input": payload["input"], "classic_input": payload["classic_input"]}
+
+
 def foreign_fx_bundle(today: date):
     start = today - timedelta(days=150)
     foreign_url = "https://api.finmindtrade.com/api/v4/data?" + urllib.parse.urlencode({"dataset": "TaiwanStockTotalInstitutionalInvestors", "start_date": start.isoformat(), "end_date": today.isoformat()})
@@ -536,7 +553,8 @@ def collect_market_data():
     nasdaq.update({"ret5": input_data["nasdaqRet5"], "ret20": input_data["nasdaqRet20"]})
     foreign_fx = results.get("foreign_fx", {"signal": "unavailable", "history": []})
     if "foreign_fx" not in results: errors.append("foreign_fx: 外資與新台幣匯率同步資料取得失敗")
-    output = {"ok": True, "model_version": "1.0 + 2.0", "decision_clock": "台灣時間 08:30 開盤前", "generated_at": datetime.now().astimezone().isoformat(timespec="seconds"), "trading_day": trading_day, "input": input_data, "classic_input": classic_input,
+    previous_reference = previous_score_reference(twse[-2]["date"])
+    output = {"ok": True, "model_version": "1.0 + 2.0", "decision_clock": "台灣時間 08:30 開盤前", "generated_at": datetime.now().astimezone().isoformat(timespec="seconds"), "trading_day": trading_day, "input": input_data, "classic_input": classic_input, "previous_reference": previous_reference,
       "data_quality": {"completeness": completeness, "critical_missing": critical_missing},
       "market": {"taiex": {"close": t["close"], "previous": twse[-2]["close"], "mas": t_mas, "ret5": taiex_ret5, "ret20": taiex_ret20}, "tpex": {"close": o["close"], "previous": tpex[-2]["close"], "mas": o_mas, "ret5": tpex_ret5, "ret20": tpex_ret20}, "futures": futures, "credit": credit, "sox": sox, "nasdaq": nasdaq, "risk": risk, "foreign_fx": foreign_fx},
       "charts": {"sox": sox.get("history", [])[-60:], "taiex": twse[-60:], "tpex": chart_tpex, "futuresNight": results.get("futures_bundle", {}).get("night", [])[-60:], "foreignFx": foreign_fx.get("history", [])},

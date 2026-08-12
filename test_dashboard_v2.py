@@ -23,6 +23,11 @@ with sync_playwright() as playwright:
     assert page.get_by_text("TSMOM時間序列動能分析細項", exact=True).count() == 1
     assert page.locator("#classicConfidence").inner_text() == "資料可信度 100%"
     assert page.locator("#confidence").inner_text() == "資料可信度 100%"
+    previous_day = DATA["previous_reference"]["trading_day"]
+    assert previous_day in page.locator("#classicPrevious").inner_text()
+    assert "分" in page.locator("#classicPrevious").inner_text()
+    assert previous_day in page.locator("#tsmomPrevious").inner_text()
+    assert "分" in page.locator("#tsmomPrevious").inner_text()
 
     classic_y = page.get_by_text("均線技術分析細項", exact=True).bounding_box()["y"]
     tsmom_y = page.get_by_text("TSMOM時間序列動能分析細項", exact=True).bounding_box()["y"]
@@ -53,6 +58,7 @@ with sync_playwright() as playwright:
     page.wait_for_function("document.querySelector('#confidence').textContent === '資料可信度 100%'")
     assert page.locator("#refresh").inner_text() == "重新讀取最新資料"
     assert "GitHub 資料更新時間" in page.locator("#apiStatus").inner_text()
+    assert previous_day in page.locator("#classicPrevious").inner_text()
     assert not console_errors, console_errors
     browser.close()
 
