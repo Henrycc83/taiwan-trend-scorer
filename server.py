@@ -276,12 +276,19 @@ def foreign_fx_bundle(today: date):
         parts = line.split(",")
         if len(parts) == 2 and clean_number(parts[1]) is not None: fx[parts[0]] = clean_number(parts[1])
     common = sorted(set(foreign) & set(fx))
-    rows = [{"date": d, "foreign_net_bn": round(foreign[d], 3), "usd_twd": fx[d]} for d in common]
-    if len(rows) < 20: raise ValueError("外資與匯率共同資料不足20日")
-    foreign5 = sum(r["foreign_net_bn"] for r in rows[-5:]) / 5; foreign20 = sum(r["foreign_net_bn"] for r in rows[-20:]) / 20
-    fx5 = sum(r["usd_twd"] for r in rows[-5:]) / 5; fx20 = sum(r["usd_twd"] for r in rows[-20:]) / 20
+    common_rows = [{"date": d, "foreign_net_bn": round(foreign[d], 3), "usd_twd": fx[d]} for d in common]
+    if len(common_rows) < 20: raise ValueError("外資與匯率共同資料不足20日")
+    foreign5 = sum(r["foreign_net_bn"] for r in common_rows[-5:]) / 5; foreign20 = sum(r["foreign_net_bn"] for r in common_rows[-20:]) / 20
+    fx5 = sum(r["usd_twd"] for r in common_rows[-5:]) / 5; fx20 = sum(r["usd_twd"] for r in common_rows[-20:]) / 20
     signal, foreign_direction, twd_direction = synchronization_signal(foreign5, foreign20, fx5, fx20)
-    return {"signal": signal, "foreign_direction": foreign_direction, "twd_direction": twd_direction, "as_of": rows[-1]["date"], "foreign_ma5_bn": round(foreign5, 2), "foreign_ma20_bn": round(foreign20, 2), "usd_twd_ma5": round(fx5, 4), "usd_twd_ma20": round(fx20, 4), "history": rows[-60:]}
+    all_dates = sorted(set(foreign) | set(fx))
+    history = [{"date": d, "foreign_net_bn": round(foreign[d], 3) if d in foreign else None, "usd_twd": fx.get(d)} for d in all_dates]
+    foreign_as_of, fx_as_of = max(foreign), max(fx)
+    return {"signal": signal, "foreign_direction": foreign_direction, "twd_direction": twd_direction,
+            "as_of": common_rows[-1]["date"], "foreign_as_of": foreign_as_of, "fx_as_of": fx_as_of,
+            "foreign_latest_bn": round(foreign[foreign_as_of], 3), "usd_twd_latest": fx[fx_as_of],
+            "foreign_ma5_bn": round(foreign5, 2), "foreign_ma20_bn": round(foreign20, 2),
+            "usd_twd_ma5": round(fx5, 4), "usd_twd_ma20": round(fx20, 4), "history": history[-60:]}
 
 
 def html_rows(url):

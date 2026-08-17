@@ -39,7 +39,15 @@ with sync_playwright() as playwright:
     assert expected in sync_text
     assert DATA["market"]["foreign_fx"]["as_of"] in sync_text
     assert page.locator("#chart-foreignFx[data-sync='drawn']").count() == 1
-    assert page.locator("#meta-foreignFx").inner_text().startswith("共同資料至")
+    foreign_fx = DATA["market"]["foreign_fx"]
+    assert foreign_fx["foreign_as_of"] in page.locator("#latest-foreignFx").inner_text()
+    assert foreign_fx["fx_as_of"] in page.locator("#latest-foreignFx").inner_text()
+    assert page.locator("#meta-foreignFx").inner_text().startswith("同步判定共同資料至")
+    assert page.locator("#chart-foreignFx").get_attribute("data-last-date") == foreign_fx["foreign_as_of"]
+    sox = DATA["market"]["sox"]
+    assert sox["date"] in page.locator("#latest-sox").inner_text()
+    assert f'{sox["close"]:,.2f}' in page.locator("#latest-sox").inner_text()
+    assert sox["date"] in page.locator("#meta-sox").inner_text()
     assert page.locator("canvas[data-ma5='drawn'][data-ma20='drawn']").count() == 4
 
     page.locator("#taiexRet20").fill("")
