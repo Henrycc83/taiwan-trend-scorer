@@ -5,8 +5,9 @@ on:
     branches: [main]
   workflow_dispatch:
   schedule:
-    # Weekdays 08:15 Asia/Taipei. GitHub schedules may start a little late.
-    - cron: "15 0 * * 1-5"
+    # Daily 06:00 Asia/Taipei = previous day 22:00 UTC.
+    # GitHub schedules may start a little late.
+    - cron: "0 22 * * *"
 
 permissions:
   contents: write

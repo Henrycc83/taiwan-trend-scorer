@@ -15,7 +15,7 @@
 
 ## 資料更新
 
-GitHub Actions 於台北時間每個工作日約 08:15 執行 `python server.py --refresh-only`，更新 `latest_market_data.json` 與每日快照後部署網頁。GitHub 排程可能延遲；頁面會顯示實際資料產生時間與台股資料日。
+GitHub Actions 於台北時間每天約 06:00 執行 `python server.py --refresh-only`，更新 `latest_market_data.json` 與每日快照後部署網頁。GitHub 排程可能延遲；頁面會顯示實際資料產生時間與台股資料日。
 
 ## 本機使用
 
