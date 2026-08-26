@@ -27,8 +27,15 @@ jobs:
         with:
           python-version: "3.13"
       - name: Refresh public market data
-        if: github.event_name != 'push'
-        run: python server.py --refresh-only
+        run: |
+          for attempt in 1 2 3; do
+            if python server.py --refresh-only; then
+              exit 0
+            fi
+            echo "Refresh attempt ${attempt} failed."
+            sleep $((attempt * 10))
+          done
+          exit 1
       - name: Save refreshed snapshot
         if: github.event_name != 'push'
         run: |

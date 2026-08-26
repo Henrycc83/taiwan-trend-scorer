@@ -3,7 +3,9 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import shutil
 import socket
+import ssl
 import subprocess
 import threading
 import time
@@ -19,6 +21,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 CACHE = ROOT / "latest_market_data.json"
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) TrendScorer/2.0"
+TLS_CONTEXT = ssl.create_default_context()
+# Python 3.13+ can enable X509 strict mode. TWSE's otherwise valid chain omits
+# Subject Key Identifier on an intermediate certificate, so clear only that
+# strict RFC flag while retaining CA validation and hostname verification.
+if hasattr(ssl, "VERIFY_X509_STRICT"):
+    TLS_CONTEXT.verify_flags &= ~ssl.VERIFY_X509_STRICT
 
 SOURCES = {
     "twse": "https://www.twse.com.tw/",
@@ -56,23 +64,38 @@ class TableParser(HTMLParser):
             self.row = None
 
 
-def fetch(url: str, timeout: int = 25) -> bytes:
-    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/json,text/html,*/*"})
-    try:
-        with urllib.request.urlopen(req, timeout=timeout) as response:
-            return response.read()
-    except Exception as first_error:
-        # Windows Python 3.14 may reject otherwise valid public-site chains when
-        # the server omits Subject Key Identifier. curl uses the Windows trust
-        # store, so it is a verified fallback rather than disabling TLS checks.
+def fetch(url: str, timeout: int = 25, attempts: int = 3) -> bytes:
+    """Fetch a URL with verified-TLS retries and a cross-platform curl fallback."""
+    curl = shutil.which("curl.exe") or shutil.which("curl")
+    errors = []
+    for attempt in range(1, attempts + 1):
+        req = urllib.request.Request(
+            url,
+            headers={"User-Agent": UA, "Accept": "application/json,text/html,*/*"},
+        )
         try:
-            completed = subprocess.run(
-                ["curl.exe", "-L", "-sS", "--fail", "--max-time", str(timeout), "-A", UA, url],
-                capture_output=True, check=True, timeout=timeout + 5,
-            )
-            return completed.stdout
-        except Exception as curl_error:
-            raise RuntimeError(f"API連線失敗：{first_error}; curl備援：{curl_error}") from curl_error
+            with urllib.request.urlopen(req, timeout=timeout, context=TLS_CONTEXT) as response:
+                return response.read()
+        except Exception as urllib_error:
+            errors.append(f"urllib第{attempt}次：{urllib_error}")
+
+        # Some Windows Python builds reject otherwise valid public-site chains.
+        # curl uses the operating system trust store; TLS verification stays on.
+        if curl:
+            try:
+                completed = subprocess.run(
+                    [curl, "-L", "-sS", "--fail", "--max-time", str(timeout), "-A", UA, url],
+                    capture_output=True, check=True, timeout=timeout + 5,
+                )
+                return completed.stdout
+            except Exception as curl_error:
+                errors.append(f"curl第{attempt}次：{curl_error}")
+
+        if attempt < attempts:
+            time.sleep(attempt * 1.5)
+
+    detail = "; ".join(errors[-6:])
+    raise RuntimeError(f"API連線失敗（已重試{attempts}次）：{detail}")
 
 
 def fetch_json(url: str):
