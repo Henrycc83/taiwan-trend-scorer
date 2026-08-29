@@ -2,7 +2,7 @@
   "ok": true,
   "model_version": "1.0 + 2.0",
   "decision_clock": "台灣時間 08:30 開盤前",
-  "generated_at": "2026-08-29T03:25:06+00:00",
+  "generated_at": "2026-08-29T23:40:55+00:00",
   "trading_day": "2026-08-28",
   "input": {
     "taiexCloseMa20Pct": 2.7879,
@@ -20,7 +20,7 @@
     "basisPercentile": 29.67,
     "nightPct": 0.0669,
     "foreignOiPct": -78.0189,
-    "pcrPercentile": 22.73,
+    "pcrPercentile": 19.05,
     "priceRet5": 2.4482,
     "marginRet5": 3.7003,
     "marginRet20": 11.7673,
@@ -149,7 +149,7 @@
       "foreign_oi_pct": -78.0189,
       "pcr_oi": 101.44,
       "pcr_date": "2026/8/28",
-      "pcr_percentile": 22.73,
+      "pcr_percentile": 19.05,
       "basis_pct": 0.0551,
       "basis_percentile": 29.67
     },
@@ -586,11 +586,10 @@
         },
         {
           "date": "2026-08-28",
-          "open": 11882.17,
+          "open": 11731.58,
           "high": 11794.28,
           "low": 11435.7,
-          "close": 11469.66,
-          "snapshot": true
+          "close": 11469.66
         }
       ],
       "ret5": -2.3058,
@@ -1017,11 +1016,10 @@
         },
         {
           "date": "2026-08-28",
-          "open": 26541.35,
+          "open": 26515.99,
           "high": 26700.68,
           "low": 26359.27,
-          "close": 26402.42,
-          "snapshot": true
+          "close": 26402.42
         }
       ],
       "ret5": 0.8478,
@@ -1765,11 +1763,10 @@
       },
       {
         "date": "2026-08-28",
-        "open": 11882.17,
+        "open": 11731.58,
         "high": 11794.28,
         "low": 11435.7,
-        "close": 11469.66,
-        "snapshot": true
+        "close": 11469.66
       }
     ],
     "taiex": [
