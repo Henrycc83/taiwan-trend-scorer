@@ -2,7 +2,7 @@
   "ok": true,
   "model_version": "1.0 + 2.0",
   "decision_clock": "台灣時間 08:30 開盤前",
-  "generated_at": "2026-10-10T01:23:08+00:00",
+  "generated_at": "2026-10-11T00:34:18+00:00",
   "trading_day": "2026-10-08",
   "input": {
     "taiexCloseMa20Pct": 3.4088,
@@ -17,10 +17,10 @@
     "breadthPositive": false,
     "tpexRelative5": -0.10140000000000016,
     "tpexRelative20": 0.10719999999999974,
-    "basisPercentile": 38.2,
+    "basisPercentile": 38.64,
     "nightPct": 0.4944,
     "foreignOiPct": -74.7046,
-    "pcrPercentile": 26.32,
+    "pcrPercentile": 27.78,
     "priceRet5": 1.9853,
     "marginRet5": 2.6257,
     "marginRet20": 10.2579,
@@ -149,9 +149,9 @@
       "foreign_oi_pct": -74.7046,
       "pcr_oi": 80.18,
       "pcr_date": "2026/10/8",
-      "pcr_percentile": 26.32,
+      "pcr_percentile": 27.78,
       "basis_pct": 0.0721,
-      "basis_percentile": 38.2
+      "basis_percentile": 38.64
     },
     "credit": {
       "margin_previous": 640000774.0,
@@ -169,7 +169,7 @@
       "close": 12572.42,
       "previous": 12623.71,
       "change_pct": -0.4063,
-      "crosscheck": "2026-10-08｜History of Market 12,623.71／Nasdaq 12,623.71，差異 0.00%",
+      "crosscheck": "2026-10-09｜History of Market 12,572.42／Nasdaq 12,572.42，差異 0.00%",
       "history": [
         {
           "date": "2026-07-17",
@@ -586,11 +586,10 @@
         },
         {
           "date": "2026-10-09",
-          "open": 12623.72,
+          "open": 12796.0,
           "high": 12826.67,
           "low": 12507.88,
-          "close": 12572.42,
-          "snapshot": true
+          "close": 12572.42
         }
       ],
       "ret5": -4.2952,
@@ -1017,11 +1016,10 @@
         },
         {
           "date": "2026-10-09",
-          "open": 27193.34,
+          "open": 27342.27,
           "high": 27395.41,
           "low": 27254.03,
-          "close": 27366.17,
-          "snapshot": true
+          "close": 27366.17
         }
       ],
       "ret5": 0.6447,
@@ -1765,11 +1763,10 @@
       },
       {
         "date": "2026-10-09",
-        "open": 12623.72,
+        "open": 12796.0,
         "high": 12826.67,
         "low": 12507.88,
-        "close": 12572.42,
-        "snapshot": true
+        "close": 12572.42
       }
     ],
     "taiex": [
