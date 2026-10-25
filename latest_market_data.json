@@ -2,7 +2,7 @@
   "ok": true,
   "model_version": "1.0 + 2.0",
   "decision_clock": "台灣時間 08:30 開盤前",
-  "generated_at": "2026-10-24T23:51:16+00:00",
+  "generated_at": "2026-10-25T23:40:18+00:00",
   "trading_day": "2026-10-22",
   "input": {
     "taiexCloseMa20Pct": -4.2232,
@@ -17,7 +17,7 @@
     "breadthPositive": false,
     "tpexRelative5": -1.8555,
     "tpexRelative20": -3.9696,
-    "basisPercentile": 73.86,
+    "basisPercentile": 73.56,
     "nightPct": -1.3356,
     "foreignOiPct": -73.9617,
     "pcrPercentile": 29.41,
@@ -151,7 +151,7 @@
       "pcr_date": "2026/10/22",
       "pcr_percentile": 29.41,
       "basis_pct": 0.5008,
-      "basis_percentile": 73.86
+      "basis_percentile": 73.56
     },
     "credit": {
       "margin_previous": 644373624.0,
