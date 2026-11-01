@@ -2,7 +2,7 @@
   "ok": true,
   "model_version": "1.0 + 2.0",
   "decision_clock": "台灣時間 08:30 開盤前",
-  "generated_at": "2026-10-31T01:13:03+00:00",
+  "generated_at": "2026-11-01T00:33:40+00:00",
   "trading_day": "2026-10-30",
   "input": {
     "taiexCloseMa20Pct": -5.2689,
@@ -17,10 +17,10 @@
     "breadthPositive": false,
     "tpexRelative5": -2.7885,
     "tpexRelative20": -5.104700000000001,
-    "basisPercentile": 47.73,
+    "basisPercentile": 50.0,
     "nightPct": 1.3797,
     "foreignOiPct": -74.9403,
-    "pcrPercentile": 21.05,
+    "pcrPercentile": 22.22,
     "priceRet5": -3.5744,
     "marginRet5": -3.2443,
     "marginRet20": 0.7782,
@@ -31,7 +31,7 @@
     "nasdaqRet5": -1.997,
     "nasdaqRet20": -6.4502,
     "soxRelative20": -12.183700000000002,
-    "atrPercentile": 52.81,
+    "atrPercentile": 69.12,
     "drawdown20": -9.2543,
     "bearGap": true
   },
@@ -149,9 +149,9 @@
       "foreign_oi_pct": -74.9403,
       "pcr_oi": 62.59,
       "pcr_date": "2026/10/30",
-      "pcr_percentile": 21.05,
+      "pcr_percentile": 22.22,
       "basis_pct": 0.1972,
-      "basis_percentile": 47.73
+      "basis_percentile": 50.0
     },
     "credit": {
       "margin_previous": 633910848.0,
@@ -169,7 +169,7 @@
       "close": 10688.8,
       "previous": 11518.2,
       "change_pct": -7.2008,
-      "crosscheck": "2026-10-29｜History of Market 11,518.20／Nasdaq 11,518.20，差異 0.00%",
+      "crosscheck": "2026-10-30｜History of Market 10,688.80／Nasdaq 10,688.80，差異 0.00%",
       "history": [
         {
           "date": "2026-08-07",
@@ -586,11 +586,10 @@
         },
         {
           "date": "2026-10-30",
-          "open": 11518.2,
+          "open": 10855.81,
           "high": 10957.32,
           "low": 10439.01,
-          "close": 10688.8,
-          "snapshot": true
+          "close": 10688.8
         }
       ],
       "ret5": -0.841,
@@ -1017,18 +1016,17 @@
         },
         {
           "date": "2026-10-30",
-          "open": 26184.73,
+          "open": 25592.49,
           "high": 25673.0,
           "low": 25177.33,
-          "close": 25437.0,
-          "snapshot": true
+          "close": 25437.0
         }
       ],
       "ret5": -1.997,
       "ret20": -6.4502
     },
     "risk": {
-      "atr_percentile": 52.81,
+      "atr_percentile": 69.12,
       "drawdown20": -9.2543
     },
     "foreign_fx": {
@@ -1453,11 +1451,10 @@
       },
       {
         "date": "2026-10-30",
-        "open": 11518.2,
+        "open": 10855.81,
         "high": 10957.32,
         "low": 10439.01,
-        "close": 10688.8,
-        "snapshot": true
+        "close": 10688.8
       }
     ],
     "taiex": [
@@ -2453,7 +2450,7 @@
     "fred_fx": "https://fred.stlouisfed.org/series/DEXTAUS"
   },
   "errors": [
-    "foreign_fx: API連線失敗（已重試3次）：urllib第1次：The read operation timed out; curl第1次：Command '['/usr/bin/curl', '-L', '-sS', '--fail', '--max-time', '25', '-A', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) TrendScorer/2.0', 'https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=2026-06-03&coed=2026-10-31']' returned non-zero exit status 92.; urllib第2次：The read operation timed out; curl第2次：Command '['/usr/bin/curl', '-L', '-sS', '--fail', '--max-time', '25', '-A', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) TrendScorer/2.0', 'https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=2026-06-03&coed=2026-10-31']' returned non-zero exit status 92.; urllib第3次：The read operation timed out; curl第3次：Command '['/usr/bin/curl', '-L', '-sS', '--fail', '--max-time', '25', '-A', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) TrendScorer/2.0', 'https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=2026-06-03&coed=2026-10-31']' returned non-zero exit status 92.",
+    "foreign_fx: API連線失敗（已重試3次）：urllib第1次：The read operation timed out; curl第1次：Command '['/usr/bin/curl', '-L', '-sS', '--fail', '--max-time', '25', '-A', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) TrendScorer/2.0', 'https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=2026-06-04&coed=2026-11-01']' returned non-zero exit status 92.; urllib第2次：The read operation timed out; curl第2次：Command '['/usr/bin/curl', '-L', '-sS', '--fail', '--max-time', '25', '-A', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) TrendScorer/2.0', 'https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=2026-06-04&coed=2026-11-01']' returned non-zero exit status 92.; urllib第3次：The read operation timed out; curl第3次：Command '['/usr/bin/curl', '-L', '-sS', '--fail', '--max-time', '25', '-A', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) TrendScorer/2.0', 'https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=2026-06-04&coed=2026-11-01']' returned non-zero exit status 92.",
     "foreign_fx: 外資與新台幣匯率同步資料取得失敗"
   ]
 }
