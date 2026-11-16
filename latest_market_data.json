@@ -2,7 +2,7 @@
   "ok": true,
   "model_version": "1.0 + 2.0",
   "decision_clock": "台灣時間 08:30 開盤前",
-  "generated_at": "2026-11-15T01:25:33+00:00",
+  "generated_at": "2026-11-16T01:28:41+00:00",
   "trading_day": "2026-11-13",
   "input": {
     "taiexCloseMa20Pct": -2.1492,
@@ -17,10 +17,10 @@
     "breadthPositive": true,
     "tpexRelative5": 2.6190999999999995,
     "tpexRelative20": -8.317799999999998,
-    "basisPercentile": 68.97,
-    "nightPct": -0.3605,
+    "basisPercentile": 68.6,
+    "nightPct": -0.292,
     "foreignOiPct": -79.2748,
-    "pcrPercentile": 31.58,
+    "pcrPercentile": 33.33,
     "priceRet5": 10.0084,
     "marginRet5": 0.4768,
     "marginRet20": -17.6449,
@@ -47,7 +47,7 @@
     "bothUp": true,
     "breadthPositive": true,
     "basisPct": 0.3638,
-    "nightPct": -0.3605,
+    "nightPct": -0.292,
     "foreignNet": -100870,
     "pcrOi": 57.75,
     "pricePct": 1.3535,
@@ -142,16 +142,16 @@
     },
     "futures": {
       "day": 43834.0,
-      "night": 43676.0,
-      "night_date": "2026-11-13",
+      "night": 43706.0,
+      "night_date": "2026-11-16",
       "foreign_net": -100870,
       "open_interest": 127241.0,
       "foreign_oi_pct": -79.2748,
       "pcr_oi": 57.75,
       "pcr_date": "2026/11/13",
-      "pcr_percentile": 31.58,
+      "pcr_percentile": 33.33,
       "basis_pct": 0.3638,
-      "basis_percentile": 68.97
+      "basis_percentile": 68.6
     },
     "credit": {
       "margin_previous": 533474629.0,
@@ -2265,13 +2265,6 @@
     ],
     "futuresNight": [
       {
-        "date": "2026-08-17",
-        "open": 45852.0,
-        "high": 45968.0,
-        "low": 45551.0,
-        "close": 45727.0
-      },
-      {
         "date": "2026-08-18",
         "open": 46000.0,
         "high": 46297.0,
@@ -2683,6 +2676,13 @@
         "high": 44034.0,
         "low": 42371.0,
         "close": 43676.0
+      },
+      {
+        "date": "2026-11-16",
+        "open": 43921.0,
+        "high": 44423.0,
+        "low": 42956.0,
+        "close": 43706.0
       }
     ],
     "foreignFx": [
