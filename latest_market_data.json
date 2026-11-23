@@ -2,7 +2,7 @@
   "ok": true,
   "model_version": "1.0 + 2.0",
   "decision_clock": "台灣時間 08:30 開盤前",
-  "generated_at": "2026-11-22T01:46:20+00:00",
+  "generated_at": "2026-11-23T02:03:48+00:00",
   "trading_day": "2026-11-20",
   "input": {
     "taiexCloseMa20Pct": -15.6516,
@@ -17,8 +17,8 @@
     "breadthPositive": false,
     "tpexRelative5": -5.603999999999999,
     "tpexRelative20": -10.260099999999998,
-    "basisPercentile": 3.41,
-    "nightPct": 6.2216,
+    "basisPercentile": 3.45,
+    "nightPct": -5.4523,
     "foreignOiPct": -75.4656,
     "pcrPercentile": 5.26,
     "priceRet5": -17.497,
@@ -47,7 +47,7 @@
     "bothUp": false,
     "breadthPositive": false,
     "basisPct": -0.4393,
-    "nightPct": 6.2216,
+    "nightPct": -5.4523,
     "foreignNet": -97863,
     "pcrOi": 30.05,
     "pricePct": -6.229,
@@ -142,8 +142,8 @@
     },
     "futures": {
       "day": 35875.0,
-      "night": 38107.0,
-      "night_date": "2026-11-20",
+      "night": 33919.0,
+      "night_date": "2026-11-23",
       "foreign_net": -97863,
       "open_interest": 129679.0,
       "foreign_oi_pct": -75.4656,
@@ -151,7 +151,7 @@
       "pcr_date": "2026/11/20",
       "pcr_percentile": 5.26,
       "basis_pct": -0.4393,
-      "basis_percentile": 3.41
+      "basis_percentile": 3.45
     },
     "credit": {
       "margin_previous": 484368360.0,
@@ -2300,13 +2300,6 @@
     ],
     "futuresNight": [
       {
-        "date": "2026-08-24",
-        "open": 45220.0,
-        "high": 45474.0,
-        "low": 44978.0,
-        "close": 45074.0
-      },
-      {
         "date": "2026-08-25",
         "open": 44658.0,
         "high": 45015.0,
@@ -2718,6 +2711,13 @@
         "high": 39765.0,
         "low": 37931.0,
         "close": 38107.0
+      },
+      {
+        "date": "2026-11-23",
+        "open": 35943.0,
+        "high": 36396.0,
+        "low": 33719.0,
+        "close": 33919.0
       }
     ],
     "foreignFx": [
