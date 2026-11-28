@@ -2,112 +2,112 @@
   "ok": true,
   "model_version": "1.0 + 2.0",
   "decision_clock": "台灣時間 08:30 開盤前",
-  "generated_at": "2026-11-27T03:51:38+00:00",
-  "trading_day": "2026-11-26",
+  "generated_at": "2026-11-28T03:37:55+00:00",
+  "trading_day": "2026-11-27",
   "input": {
-    "taiexCloseMa20Pct": -4.8711,
-    "taiexMa20Slope5": -4.8673,
-    "taiexRet20": -15.5635,
+    "taiexCloseMa20Pct": -3.8014,
+    "taiexMa20Slope5": -4.3497,
+    "taiexRet20": -13.058,
     "taiexSupport": true,
-    "tpexCloseMa20Pct": -8.6111,
-    "tpexMa20Slope5": -7.915,
-    "tpexRet20": -25.1775,
+    "tpexCloseMa20Pct": -8.6793,
+    "tpexMa20Slope5": -7.3623,
+    "tpexRet20": -22.8191,
     "tpexSupport": true,
-    "bothUp": true,
-    "breadthPositive": true,
-    "tpexRelative5": -0.30590000000000006,
-    "tpexRelative20": -9.613999999999999,
-    "basisPercentile": 93.26,
-    "nightPct": 0.0938,
-    "foreignOiPct": -79.4437,
-    "pcrPercentile": 54.55,
-    "priceRet5": 1.8865,
-    "marginRet5": -10.2987,
-    "marginRet20": -31.4597,
-    "shortRet5": -17.252,
-    "soxRet1": -0.6526,
-    "soxRet5": -9.0952,
-    "soxRet20": -24.8985,
-    "nasdaqRet5": -3.4551,
-    "nasdaqRet20": -11.1641,
-    "soxRelative20": -13.734399999999999,
-    "atrPercentile": 97.7,
-    "drawdown20": -13.4036,
+    "bothUp": false,
+    "breadthPositive": false,
+    "tpexRelative5": -0.5583000000000009,
+    "tpexRelative20": -9.761099999999999,
+    "basisPercentile": 47.19,
+    "nightPct": 0.3277,
+    "foreignOiPct": -80.6214,
+    "pcrPercentile": 40.91,
+    "priceRet5": 9.0882,
+    "marginRet5": -1.1615,
+    "marginRet20": -31.0033,
+    "shortRet5": -7.5083,
+    "soxRet1": 4.6935,
+    "soxRet5": -2.4736,
+    "soxRet20": -20.2418,
+    "nasdaqRet5": 1.0482,
+    "nasdaqRet20": -7.8489,
+    "soxRelative20": -12.392900000000001,
+    "atrPercentile": 95.45,
+    "drawdown20": -12.4934,
     "bearGap": true
   },
   "classic_input": {
     "taiexAboveMa5": true,
-    "taiexAboveMa10": false,
+    "taiexAboveMa10": true,
     "taiexAboveMa20": false,
     "tpexAboveMa5": true,
     "tpexAboveMa10": false,
     "tpexAboveMa20": false,
     "taiexSupport": true,
     "tpexSupport": true,
-    "bothUp": true,
-    "breadthPositive": true,
-    "basisPct": 0.7744,
-    "nightPct": 0.0938,
-    "foreignNet": -106275,
-    "pcrOi": 52.53,
-    "pricePct": 2.5039,
-    "marginPct": 0.0798,
-    "shortPct": 2.5129,
-    "soxPct": -0.6526,
-    "soxRet5": -9.0952,
+    "bothUp": false,
+    "breadthPositive": false,
+    "basisPct": 0.1397,
+    "nightPct": 0.3277,
+    "foreignNet": -107503,
+    "pcrOi": 46.67,
+    "pricePct": 0.3991,
+    "marginPct": -0.9926,
+    "shortPct": 6.433,
+    "soxPct": 4.6935,
+    "soxRet5": -2.4736,
     "bearGap": true
   },
   "previous_reference": {
-    "trading_day": "2026-11-25",
+    "trading_day": "2026-11-26",
     "input": {
-      "taiexCloseMa20Pct": -8.0014,
-      "taiexMa20Slope5": -4.8979,
-      "taiexRet20": -18.7946,
+      "taiexCloseMa20Pct": -4.8711,
+      "taiexMa20Slope5": -4.8673,
+      "taiexRet20": -15.5635,
       "taiexSupport": true,
-      "tpexCloseMa20Pct": -14.303,
-      "tpexMa20Slope5": -7.8677,
-      "tpexRet20": -30.0651,
+      "tpexCloseMa20Pct": -8.6111,
+      "tpexMa20Slope5": -7.915,
+      "tpexRet20": -25.1775,
       "tpexSupport": true,
-      "bothUp": false,
-      "breadthPositive": false,
-      "tpexRelative5": -5.2937,
-      "tpexRelative20": -11.270500000000002,
-      "basisPercentile": 11.36,
-      "nightPct": 0.8801,
-      "foreignOiPct": -78.9256,
-      "pcrPercentile": 22.73,
-      "priceRet5": -4.9745,
-      "marginRet5": -14.5442,
-      "marginRet20": -31.3398,
-      "shortRet5": -12.4928,
+      "bothUp": true,
+      "breadthPositive": true,
+      "tpexRelative5": -0.30590000000000006,
+      "tpexRelative20": -9.613999999999999,
+      "basisPercentile": 93.26,
+      "nightPct": 0.0938,
+      "foreignOiPct": -79.4437,
+      "pcrPercentile": 54.55,
+      "priceRet5": 1.8865,
+      "marginRet5": -10.2987,
+      "marginRet20": -31.4597,
+      "shortRet5": -17.252,
       "soxRet1": -0.6526,
       "soxRet5": -9.0952,
       "soxRet20": -24.8985,
       "nasdaqRet5": -3.4551,
       "nasdaqRet20": -11.1641,
       "soxRelative20": -13.734399999999999,
-      "atrPercentile": 100.0,
-      "drawdown20": -17.626,
+      "atrPercentile": 97.7,
+      "drawdown20": -13.4036,
       "bearGap": true
     },
     "classic_input": {
       "taiexAboveMa5": true,
       "taiexAboveMa10": false,
       "taiexAboveMa20": false,
-      "tpexAboveMa5": false,
+      "tpexAboveMa5": true,
       "tpexAboveMa10": false,
       "tpexAboveMa20": false,
       "taiexSupport": true,
       "tpexSupport": true,
-      "bothUp": false,
-      "breadthPositive": false,
-      "basisPct": -0.3493,
-      "nightPct": 0.8801,
-      "foreignNet": -105709,
-      "pcrOi": 39.84,
-      "pricePct": -4.8026,
-      "marginPct": -4.2705,
-      "shortPct": -9.2427,
+      "bothUp": true,
+      "breadthPositive": true,
+      "basisPct": 0.7744,
+      "nightPct": 0.0938,
+      "foreignNet": -106275,
+      "pcrOi": 52.53,
+      "pricePct": 2.5039,
+      "marginPct": 0.0798,
+      "shortPct": 2.5129,
       "soxPct": -0.6526,
       "soxRet5": -9.0952,
       "bearGap": true
@@ -119,65 +119,58 @@
   },
   "market": {
     "taiex": {
-      "close": 39151.81,
-      "previous": 38195.43,
+      "close": 39308.08,
+      "previous": 39151.81,
       "mas": {
-        "5": 38062.95,
-        "10": 39374.39,
-        "20": 41156.57
+        "5": 38717.91,
+        "10": 38937.68,
+        "20": 40861.38
       },
-      "ret5": 1.8865,
-      "ret20": -15.5635
+      "ret5": 9.0882,
+      "ret20": -13.058
     },
     "tpex": {
-      "close": 289.84,
-      "previous": 275.97,
+      "close": 285.77,
+      "previous": 289.84,
       "mas": {
-        "5": 278.65,
-        "10": 295.43,
-        "20": 317.15
+        "5": 283.14,
+        "10": 289.76,
+        "20": 312.93
       },
-      "ret5": 1.5806,
-      "ret20": -25.1775
+      "ret5": 8.5299,
+      "ret20": -22.8191
     },
     "futures": {
-      "day": 39455.0,
+      "day": 39363.0,
       "night": 39492.0,
       "night_date": "2026-11-27",
-      "foreign_net": -106275,
-      "open_interest": 133774.0,
-      "foreign_oi_pct": -79.4437,
-      "pcr_oi": 52.53,
-      "pcr_date": "2026/11/26",
-      "pcr_percentile": 54.55,
-      "basis_pct": 0.7744,
-      "basis_percentile": 93.26
+      "foreign_net": -107503,
+      "open_interest": 133343.0,
+      "foreign_oi_pct": -80.6214,
+      "pcr_oi": 46.67,
+      "pcr_date": "2026/11/27",
+      "pcr_percentile": 40.91,
+      "basis_pct": 0.1397,
+      "basis_percentile": 47.19
     },
     "credit": {
-      "margin_previous": 434137987.0,
-      "margin_current": 434484476.0,
-      "margin_pct": 0.0798,
-      "short_previous": 169365.0,
-      "short_current": 173621.0,
-      "short_pct": 2.5129,
-      "margin_ret5": -10.2987,
-      "margin_ret20": -31.4597,
-      "short_ret5": -17.252
+      "margin_previous": 434484476.0,
+      "margin_current": 430171978.0,
+      "margin_pct": -0.9926,
+      "short_previous": 173621.0,
+      "short_current": 184790.0,
+      "short_pct": 6.433,
+      "margin_ret5": -1.1615,
+      "margin_ret20": -31.0033,
+      "short_ret5": -7.5083
     },
     "sox": {
-      "date": "2026-11-25",
-      "close": 8774.86,
-      "previous": 8832.5,
-      "change_pct": -0.6526,
+      "date": "2026-11-27",
+      "close": 9186.71,
+      "previous": 8774.86,
+      "change_pct": 4.6935,
       "crosscheck": "2026-11-25｜History of Market 8,774.86／Nasdaq 8,774.86，差異 0.00%",
       "history": [
-        {
-          "date": "2026-09-02",
-          "open": 11243.55,
-          "high": 11388.99,
-          "low": 11154.67,
-          "close": 11339.25
-        },
         {
           "date": "2026-09-03",
           "open": 11219.44,
@@ -590,24 +583,25 @@
           "high": 8781.01,
           "low": 8129.23,
           "close": 8774.86
+        },
+        {
+          "date": "2026-11-27",
+          "open": 8774.86,
+          "high": 9213.64,
+          "low": 8789.31,
+          "close": 9186.71,
+          "snapshot": true
         }
       ],
-      "ret5": -9.0952,
-      "ret20": -24.8985
+      "ret5": -2.4736,
+      "ret20": -20.2418
     },
     "nasdaq": {
-      "date": "2026-11-25",
-      "close": 23585.8,
-      "previous": 23733.54,
-      "change_pct": -0.6225,
+      "date": "2026-11-27",
+      "close": 24129.5,
+      "previous": 23585.8,
+      "change_pct": 2.3052,
       "history": [
-        {
-          "date": "2026-09-02",
-          "open": 26094.0,
-          "high": 26245.04,
-          "low": 26062.68,
-          "close": 26217.83
-        },
         {
           "date": "2026-09-03",
           "open": 26336.32,
@@ -1020,34 +1014,37 @@
           "high": 23627.45,
           "low": 22632.4,
           "close": 23585.8
+        },
+        {
+          "date": "2026-11-27",
+          "open": 23585.8,
+          "high": 24149.09,
+          "low": 23690.6,
+          "close": 24129.5,
+          "snapshot": true
         }
       ],
-      "ret5": -3.4551,
-      "ret20": -11.1641
+      "ret5": 1.0482,
+      "ret20": -7.8489
     },
     "risk": {
-      "atr_percentile": 97.7,
-      "drawdown20": -13.4036
+      "atr_percentile": 95.45,
+      "drawdown20": -12.4934
     },
     "foreign_fx": {
       "signal": "divergent",
       "foreign_direction": "up",
       "twd_direction": "down",
       "as_of": "2026-11-20",
-      "foreign_as_of": "2026-11-26",
+      "foreign_as_of": "2026-11-27",
       "fx_as_of": "2026-11-20",
-      "foreign_latest_bn": -49.181,
+      "foreign_latest_bn": -29.628,
       "usd_twd_latest": 32.97,
       "foreign_ma5_bn": -43.73,
       "foreign_ma20_bn": -54.59,
       "usd_twd_ma5": 32.95,
       "usd_twd_ma20": 32.7595,
       "history": [
-        {
-          "date": "2026-09-04",
-          "foreign_net_bn": 56.213,
-          "usd_twd": 31.63
-        },
         {
           "date": "2026-09-07",
           "foreign_net_bn": 88.308,
@@ -1342,19 +1339,17 @@
           "date": "2026-11-26",
           "foreign_net_bn": -49.181,
           "usd_twd": null
+        },
+        {
+          "date": "2026-11-27",
+          "foreign_net_bn": -29.628,
+          "usd_twd": null
         }
       ]
     }
   },
   "charts": {
     "sox": [
-      {
-        "date": "2026-09-02",
-        "open": 11243.55,
-        "high": 11388.99,
-        "low": 11154.67,
-        "close": 11339.25
-      },
       {
         "date": "2026-09-03",
         "open": 11219.44,
@@ -1767,16 +1762,17 @@
         "high": 8781.01,
         "low": 8129.23,
         "close": 8774.86
+      },
+      {
+        "date": "2026-11-27",
+        "open": 8774.86,
+        "high": 9213.64,
+        "low": 8789.31,
+        "close": 9186.71,
+        "snapshot": true
       }
     ],
     "taiex": [
-      {
-        "date": "2026-08-28",
-        "open": 46070.83,
-        "high": 46574.52,
-        "low": 46070.83,
-        "close": 46331.45
-      },
       {
         "date": "2026-08-31",
         "open": 46224.69,
@@ -2189,6 +2185,13 @@
         "high": 39459.95,
         "low": 38435.99,
         "close": 39151.81
+      },
+      {
+        "date": "2026-11-27",
+        "open": 39168.57,
+        "high": 39495.41,
+        "low": 38890.53,
+        "close": 39308.08
       }
     ],
     "tpex": [
@@ -2324,6 +2327,13 @@
         "high": 290.64,
         "low": 278.31,
         "close": 289.84
+      },
+      {
+        "date": "2026-11-27",
+        "open": 290.16,
+        "high": 292.94,
+        "low": 284.95,
+        "close": 285.77
       }
     ],
     "futuresNight": [
@@ -2750,11 +2760,6 @@
     ],
     "foreignFx": [
       {
-        "date": "2026-09-04",
-        "foreign_net_bn": 56.213,
-        "usd_twd": 31.63
-      },
-      {
         "date": "2026-09-07",
         "foreign_net_bn": 88.308,
         "usd_twd": null
@@ -3047,6 +3052,11 @@
       {
         "date": "2026-11-26",
         "foreign_net_bn": -49.181,
+        "usd_twd": null
+      },
+      {
+        "date": "2026-11-27",
+        "foreign_net_bn": -29.628,
         "usd_twd": null
       }
     ]
